@@ -1,28 +1,32 @@
 const sgMail = require('@sendgrid/mail')
-require('dotenv').config()
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-const sendWelcomeEmail = (email, name) => {
-    sgMail.send( {
-        to: email,
-        from : 'sivachdhry@gmail.com',
-        subject: 'Thanks for joining us!',
-        text : `Welcome to the app, ${name}, Let me know how you get along with the app.`
 
+const sendWelcomeMail = (email,name) => {
+    sgMail.send({
+        to : email,
+        from : '9991jartihom@gmail.com',
+        subject : 'Thanks for joining in!',
+        text : `Welcome to the app, ${name}. Let me know how you get along with the app.`
+    }).then(()=> {
+        console.log('Working')
+    }).catch((e)=> {
+        console.log(e)
     })
 }
 
-const sendCancelationEmail = (email, name) => {
-     sgMail.send ({
-         to:email,
-         from : 'sivachdhry@gmail.com',
-         subject : 'Sorry to see you go!',
-         text : `Goodbye, ${name}. I hope to see you soon.`
-     }) 
+const sendCancelationMail = (email,name) => {
+    sgMail.send({
+        to : email,
+        from : '9991jartihom@gmail.com',
+        subject : 'Sorry to see you go!',
+        text : `Goodbye, ${name}. I hope to see you back sometime soon.`
+    })
+
 }
 
 module.exports = {
-      sendWelcomeEmail,
-      sendCancelationEmail
+    sendWelcomeMail : sendWelcomeMail,
+    sendCancelationMail : sendCancelationMail
 }
